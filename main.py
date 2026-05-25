@@ -1,4 +1,6 @@
 import os
+import nest_asyncio
+nest_asyncio.apply()
 import yt_dlp
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
@@ -35,11 +37,4 @@ app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, download_video))
 
 print("Bot Running...")
 
-import asyncio
-
-async def main():
-    await app.initialize()
-    await app.start()
-    await app.updater.start_polling()
-
-asyncio.run(main())
+app.run_polling()
