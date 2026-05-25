@@ -35,4 +35,11 @@ app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, download_video))
 
 print("Bot Running...")
 
-app.run_polling()
+import asyncio
+
+async def main():
+    await app.initialize()
+    await app.start()
+    await app.updater.start_polling()
+
+asyncio.run(main())
